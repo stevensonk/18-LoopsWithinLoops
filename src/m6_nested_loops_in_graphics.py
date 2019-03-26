@@ -3,15 +3,15 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Keely Stevenson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    #run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -80,9 +80,44 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    radius = circle.radius
+    color = circle.fill_color
+    original_x = circle.center.x
+    original_y = circle.center.y
+
+    # The Column Part of the "L"
+    for k in range(r):
+        new_y = original_y + (radius * 2 * k)
+        for n in range(3):
+            new_x = original_x + (radius * 2 * n)
+            new_circle = rg.Circle(rg.Point(new_x, new_y), radius)
+            new_circle.fill_color = color
+            new_circle.attach_to(window)
+
+    # The Shared Corner of the "L"
+    original_y = original_y + (radius * 2 * r)
+    for k in range(3):
+        new_y = original_y + (radius * 2 * k)
+        for n in range(3):
+            new_x = original_x + (radius * 2 * n)
+            new_circle = rg.Circle(rg.Point(new_x, new_y), radius)
+            new_circle.fill_color = color
+            new_circle.attach_to(window)
+
+    # The Row Part of the "L"
+    original_x = original_x + (radius * 6)
+    for k in range(3):
+        new_y = original_y + (radius * 2 * k)
+        for n in range(c):
+            new_x = original_x + (radius * 2 * n)
+            new_circle = rg.Circle(rg.Point(new_x, new_y), radius)
+            new_circle.fill_color = color
+            new_circle.attach_to(window)
+    window.render(0.1)
 
 
 def run_test_draw_wall_on_right():
@@ -121,9 +156,28 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    dx = -1 * rectangle.get_width()
+    dy = rectangle.get_height()
+    for k in range(n + 1):
+        for i in range(k):
+            new_rectangle = rectangle.clone()
+            new_rectangle.move_by(dx * i, dy * k)
+            new_rectangle.attach_to(window)
+    window.render(0.1)
+
+
+# The Column Part of the "L"
+#    for k in range(r):
+#        new_y = original_y + (radius * 2 * k)
+#        for n in range(3):
+#            new_x = original_x + (radius * 2 * n)
+#            new_circle = rg.Circle(rg.Point(new_x, new_y), radius)
+#            new_circle.fill_color = color
+#            new_circle.attach_to(window)
 
 
 # ----------------------------------------------------------------------
