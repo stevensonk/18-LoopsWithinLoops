@@ -170,16 +170,6 @@ def draw_wall_on_right(rectangle, n, window):
     window.render(0.1)
 
 
-# The Column Part of the "L"
-#    for k in range(r):
-#        new_y = original_y + (radius * 2 * k)
-#        for n in range(3):
-#            new_x = original_x + (radius * 2 * n)
-#            new_circle = rg.Circle(rg.Point(new_x, new_y), radius)
-#            new_circle.fill_color = color
-#            new_circle.attach_to(window)
-
-
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
